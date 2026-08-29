@@ -1,0 +1,582 @@
+```html
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Generator kodów</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            font-family: Arial, sans-serif;
+
+            background: #f2f2f2;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 800px;
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 5px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        h1 {
+            text-align: center;
+
+            margin-top: 0;
+            margin-bottom: 35px;
+        }
+
+        .grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 25px 30px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+
+            margin-bottom: 8px;
+        }
+
+        select,
+        input {
+
+            width: 100%;
+
+            height: 40px;
+
+            padding: 5px 10px;
+
+            font-size: 15px;
+
+            border: 1px solid #aaa;
+
+            border-radius: 5px;
+
+            background: white;
+        }
+
+        select:focus,
+        input:focus {
+            outline: none;
+
+            border-color: #555;
+        }
+
+        .number {
+            margin-top: 25px;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        button {
+
+            margin-top: 30px;
+
+            padding: 12px 30px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            border: none;
+
+            border-radius: 6px;
+
+            background: #333;
+
+            color: white;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #555;
+        }
+
+        .result {
+
+            margin-top: 25px;
+
+            text-align: center;
+        }
+
+        .code {
+
+            margin-top: 10px;
+
+            padding: 15px;
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+            background: #fafafa;
+
+            border: 2px solid #ddd;
+
+            border-radius: 6px;
+
+            word-break: break-all;
+        }
+
+        @media (max-width: 700px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .container {
+
+                width: 100%;
+
+                padding: 25px 20px;
+            }
+
+            .grid {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <h1>Generator kodów</h1>
+
+
+    <form method="POST">
+
+
+        <div class="grid">
+
+
+            <!-- ==================== -->
+            <!-- GRUPA -->
+            <!-- ==================== -->
+
+            <div class="field">
+
+                <label for="grupa">
+                    Grupa
+                </label>
+
+                <select
+                    name="grupa"
+                    id="grupa"
+                >
+
+                    <option
+                        value=""
+                        {% if dane.grupa == "" %}selected{% endif %}
+                    >
+                        Nie wybrano
+                    </option>
+
+
+                    <option
+                        value="Materiały eksploatacyjne"
+                        {% if dane.grupa == "Materiały eksploatacyjne" %}selected{% endif %}
+                    >
+                        Materiały eksploatacyjne
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ==================== -->
+            <!-- PRODUCENT -->
+            <!-- ==================== -->
+
+            <div class="field">
+
+                <label for="producent">
+                    Producent
+                </label>
+
+                <select
+                    name="producent"
+                    id="producent"
+                >
+
+                    <option
+                        value=""
+                        {% if dane.producent == "" %}selected{% endif %}
+                    >
+                        Nie wybrano
+                    </option>
+
+
+                    <option
+                        value="Hewlett Packard"
+                        {% if dane.producent == "Hewlett Packard" %}selected{% endif %}
+                    >
+                        Hewlett Packard
+                    </option>
+
+
+                    <option
+                        value="Brother"
+                        {% if dane.producent == "Brother" %}selected{% endif %}
+                    >
+                        Brother
+                    </option>
+
+
+                    <option
+                        value="Canon"
+                        {% if dane.producent == "Canon" %}selected{% endif %}
+                    >
+                        Canon
+                    </option>
+
+
+                    <option
+                        value="Epson"
+                        {% if dane.producent == "Epson" %}selected{% endif %}
+                    >
+                        Epson
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ==================== -->
+            <!-- KOMPATYBILNOŚĆ -->
+            <!-- ==================== -->
+
+            <div class="field">
+
+                <label for="kompatybilnosc">
+                    Kompatybilność
+                </label>
+
+                <select
+                    name="kompatybilnosc"
+                    id="kompatybilnosc"
+                >
+
+                    <option
+                        value=""
+                        {% if dane.kompatybilnosc == "" %}selected{% endif %}
+                    >
+                        Nie wybrano
+                    </option>
+
+
+                    <option
+                        value="Hewlett Packard"
+                        {% if dane.kompatybilnosc == "Hewlett Packard" %}selected{% endif %}
+                    >
+                        Hewlett Packard
+                    </option>
+
+
+                    <option
+                        value="Brother"
+                        {% if dane.kompatybilnosc == "Brother" %}selected{% endif %}
+                    >
+                        Brother
+                    </option>
+
+
+                    <option
+                        value="Canon"
+                        {% if dane.kompatybilnosc == "Canon" %}selected{% endif %}
+                    >
+                        Canon
+                    </option>
+
+
+                    <option
+                        value="Epson"
+                        {% if dane.kompatybilnosc == "Epson" %}selected{% endif %}
+                    >
+                        Epson
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ==================== -->
+            <!-- RODZAJ -->
+            <!-- ==================== -->
+
+            <div class="field">
+
+                <label for="rodzaj">
+                    Rodzaj
+                </label>
+
+                <select
+                    name="rodzaj"
+                    id="rodzaj"
+                >
+
+                    <option
+                        value=""
+                        {% if dane.rodzaj == "" %}selected{% endif %}
+                    >
+                        Nie wybrano
+                    </option>
+
+
+                    <option
+                        value="Tusz"
+                        {% if dane.rodzaj == "Tusz" %}selected{% endif %}
+                    >
+                        Tusz
+                    </option>
+
+
+                    <option
+                        value="Toner"
+                        {% if dane.rodzaj == "Toner" %}selected{% endif %}
+                    >
+                        Toner
+                    </option>
+
+
+                    <option
+                        value="Bębeb"
+                        {% if dane.rodzaj == "Bębeb" %}selected{% endif %}
+                    >
+                        Bębeb
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ==================== -->
+            <!-- KOLOR -->
+            <!-- ==================== -->
+
+            <div class="field">
+
+                <label for="kolor">
+                    Kolor
+                </label>
+
+                <select
+                    name="kolor"
+                    id="kolor"
+                >
+
+                    <option
+                        value=""
+                        {% if dane.kolor == "" %}selected{% endif %}
+                    >
+                        Nie wybrano
+                    </option>
+
+
+                    <option
+                        value="Czarny"
+                        {% if dane.kolor == "Czarny" %}selected{% endif %}
+                    >
+                        Czarny
+                    </option>
+
+
+                    <option
+                        value="Niebieski"
+                        {% if dane.kolor == "Niebieski" %}selected{% endif %}
+                    >
+                        Niebieski
+                    </option>
+
+
+                    <option
+                        value="Różowy"
+                        {% if dane.kolor == "Różowy" %}selected{% endif %}
+                    >
+                        Różowy
+                    </option>
+
+
+                    <option
+                        value="Żółty"
+                        {% if dane.kolor == "Żółty" %}selected{% endif %}
+                    >
+                        Żółty
+                    </option>
+
+
+                    <option
+                        value="Kolorowy"
+                        {% if dane.kolor == "Kolorowy" %}selected{% endif %}
+                    >
+                        Kolorowy
+                    </option>
+
+
+                    <option
+                        value="Zestaw"
+                        {% if dane.kolor == "Zestaw" %}selected{% endif %}
+                    >
+                        Zestaw
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ==================== -->
+            <!-- POCHODZENIE -->
+            <!-- ==================== -->
+
+            <div class="field">
+
+                <label for="pochodzenie">
+                    Pochodzenie
+                </label>
+
+                <select
+                    name="pochodzenie"
+                    id="pochodzenie"
+                >
+
+                    <option
+                        value=""
+                        {% if dane.pochodzenie == "" %}selected{% endif %}
+                    >
+                        Nie wybrano
+                    </option>
+
+
+                    <option
+                        value="Dystrybucja"
+                        {% if dane.pochodzenie == "Dystrybucja" %}selected{% endif %}
+                    >
+                        Dystrybucja
+                    </option>
+
+
+                    <option
+                        value="Rynek"
+                        {% if dane.pochodzenie == "Rynek" %}selected{% endif %}
+                    >
+                        Rynek
+                    </option>
+
+                </select>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ==================== -->
+        <!-- NUMER INDEKSOWY -->
+        <!-- ==================== -->
+
+        <div class="field number">
+
+            <label for="numer">
+                Numer indeksowy
+            </label>
+
+            <input
+                type="text"
+                name="numer"
+                id="numer"
+                value="{{ dane.numer }}"
+            >
+
+        </div>
+
+
+        <!-- ==================== -->
+        <!-- PRZYCISK -->
+        <!-- ==================== -->
+
+        <div class="button-container">
+
+            <button type="submit">
+                Wygeneruj kod
+            </button>
+
+        </div>
+
+
+    </form>
+
+
+    <!-- ==================== -->
+    <!-- WYNIK -->
+    <!-- ==================== -->
+
+    <div class="result">
+
+        <div>
+            Wygenerowany kod:
+        </div>
+
+
+        <div class="code">
+
+            {{ kod }}
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>
+```
