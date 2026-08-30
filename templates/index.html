@@ -2,10 +2,16 @@
 <html lang="pl">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Generator kodów</title>
+
 
     <style>
 
@@ -13,8 +19,11 @@
             box-sizing: border-box;
         }
 
+
         body {
+
             margin: 0;
+
             min-height: 100vh;
 
             font-family: Arial, sans-serif;
@@ -22,14 +31,19 @@
             background: #f2f2f2;
 
             display: flex;
+
             justify-content: center;
+
             align-items: center;
 
             padding: 30px;
         }
 
+
         .container {
+
             width: 100%;
+
             max-width: 1000px;
 
             background: white;
@@ -38,38 +52,52 @@
 
             border-radius: 12px;
 
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.12);
+            box-shadow:
+                0 5px 25px
+                rgba(0, 0, 0, 0.12);
         }
 
+
         h1 {
+
             text-align: center;
 
             margin-top: 0;
+
             margin-bottom: 40px;
 
             font-size: 30px;
         }
 
+
         .grid {
+
             display: grid;
 
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns:
+                repeat(3, 1fr);
 
             gap: 30px 40px;
         }
 
+
         .field {
+
             display: flex;
+
             flex-direction: column;
         }
 
+
         label {
+
             font-weight: bold;
 
             margin-bottom: 8px;
 
             font-size: 15px;
         }
+
 
         select,
         input {
@@ -82,12 +110,14 @@
 
             font-size: 15px;
 
-            border: 1px solid #aaa;
+            border:
+                1px solid #aaa;
 
             border-radius: 5px;
 
             background: white;
         }
+
 
         select:focus,
         input:focus {
@@ -97,21 +127,28 @@
             border-color: #555;
         }
 
+
         .number {
+
             width: 300px;
 
-            margin: 35px auto 0;
+            margin:
+                35px auto 0;
         }
 
+
         .button-container {
+
             text-align: center;
         }
 
-        button {
+
+        .generate-button {
 
             margin-top: 30px;
 
-            padding: 13px 32px;
+            padding:
+                13px 32px;
 
             font-size: 16px;
 
@@ -128,9 +165,12 @@
             cursor: pointer;
         }
 
-        button:hover {
+
+        .generate-button:hover {
+
             background: #555;
         }
+
 
         .result {
 
@@ -139,12 +179,14 @@
             text-align: center;
         }
 
+
         .result-title {
 
             font-size: 16px;
 
             margin-bottom: 10px;
         }
+
 
         .code {
 
@@ -156,7 +198,8 @@
 
             background: #fafafa;
 
-            border: 2px solid #ddd;
+            border:
+                2px solid #ddd;
 
             border-radius: 6px;
 
@@ -171,12 +214,29 @@
             align-items: center;
         }
 
+
         .copy-button {
 
             margin-top: 15px;
 
+            padding:
+                11px 25px;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            border: none;
+
+            border-radius: 6px;
+
             background: #555;
+
+            color: white;
+
+            cursor: pointer;
         }
+
 
         .copy-button:hover {
 
@@ -185,9 +245,9 @@
 
 
         /*
-        ========================================================
-        TELEFON / MAŁY EKRAN
-        ========================================================
+        ============================================
+        TELEFON
+        ============================================
         */
 
         @media (max-width: 750px) {
@@ -196,36 +256,38 @@
 
                 padding: 15px;
 
-                align-items: flex-start;
-
+                align-items:
+                    flex-start;
             }
+
 
             .container {
 
-                padding: 30px 20px;
+                padding:
+                    30px 20px;
 
                 margin-top: 15px;
-
             }
+
 
             .grid {
 
-                grid-template-columns: 1fr;
+                grid-template-columns:
+                    1fr;
 
                 gap: 20px;
-
             }
+
 
             .number {
 
                 width: 100%;
-
             }
+
 
             h1 {
 
                 font-size: 25px;
-
             }
 
         }
@@ -246,7 +308,10 @@
     </h1>
 
 
-    <form method="POST" id="generatorForm">
+    <form
+        method="POST"
+        id="generatorForm"
+    >
 
 
         <div class="grid">
@@ -260,13 +325,21 @@
                     Grupa
                 </label>
 
-                <select name="grupa" id="grupa">
+                <select
+                    name="grupa"
+                    id="grupa"
+                >
 
                     <option value="">
                         Nie wybrano
                     </option>
 
-                    <option value="Materiały eksploatacyjne">
+                    <option
+                        value="Materiały eksploatacyjne"
+                        {% if dane.grupa == "Materiały eksploatacyjne" %}
+                        selected
+                        {% endif %}
+                    >
                         Materiały eksploatacyjne
                     </option>
 
@@ -283,25 +356,48 @@
                     Producent
                 </label>
 
-                <select name="producent" id="producent">
+                <select
+                    name="producent"
+                    id="producent"
+                >
 
                     <option value="">
                         Nie wybrano
                     </option>
 
-                    <option value="Hewlett Packard">
+                    <option
+                        value="Hewlett Packard"
+                        {% if dane.producent == "Hewlett Packard" %}
+                        selected
+                        {% endif %}
+                    >
                         Hewlett Packard
                     </option>
 
-                    <option value="Brother">
+                    <option
+                        value="Brother"
+                        {% if dane.producent == "Brother" %}
+                        selected
+                        {% endif %}
+                    >
                         Brother
                     </option>
 
-                    <option value="Canon">
+                    <option
+                        value="Canon"
+                        {% if dane.producent == "Canon" %}
+                        selected
+                        {% endif %}
+                    >
                         Canon
                     </option>
 
-                    <option value="Epson">
+                    <option
+                        value="Epson"
+                        {% if dane.producent == "Epson" %}
+                        selected
+                        {% endif %}
+                    >
                         Epson
                     </option>
 
@@ -327,19 +423,39 @@
                         Nie wybrano
                     </option>
 
-                    <option value="Hewlett Packard">
+                    <option
+                        value="Hewlett Packard"
+                        {% if dane.kompatybilnosc == "Hewlett Packard" %}
+                        selected
+                        {% endif %}
+                    >
                         Hewlett Packard
                     </option>
 
-                    <option value="Brother">
+                    <option
+                        value="Brother"
+                        {% if dane.kompatybilnosc == "Brother" %}
+                        selected
+                        {% endif %}
+                    >
                         Brother
                     </option>
 
-                    <option value="Canon">
+                    <option
+                        value="Canon"
+                        {% if dane.kompatybilnosc == "Canon" %}
+                        selected
+                        {% endif %}
+                    >
                         Canon
                     </option>
 
-                    <option value="Epson">
+                    <option
+                        value="Epson"
+                        {% if dane.kompatybilnosc == "Epson" %}
+                        selected
+                        {% endif %}
+                    >
                         Epson
                     </option>
 
@@ -356,21 +472,39 @@
                     Rodzaj
                 </label>
 
-                <select name="rodzaj" id="rodzaj">
+                <select
+                    name="rodzaj"
+                    id="rodzaj"
+                >
 
                     <option value="">
                         Nie wybrano
                     </option>
 
-                    <option value="Tusz">
+                    <option
+                        value="Tusz"
+                        {% if dane.rodzaj == "Tusz" %}
+                        selected
+                        {% endif %}
+                    >
                         Tusz
                     </option>
 
-                    <option value="Toner">
+                    <option
+                        value="Toner"
+                        {% if dane.rodzaj == "Toner" %}
+                        selected
+                        {% endif %}
+                    >
                         Toner
                     </option>
 
-                    <option value="Bębeb">
+                    <option
+                        value="Bębeb"
+                        {% if dane.rodzaj == "Bębeb" %}
+                        selected
+                        {% endif %}
+                    >
                         Bębeb
                     </option>
 
@@ -387,33 +521,66 @@
                     Kolor
                 </label>
 
-                <select name="kolor" id="kolor">
+                <select
+                    name="kolor"
+                    id="kolor"
+                >
 
                     <option value="">
                         Nie wybrano
                     </option>
 
-                    <option value="Czarny">
+                    <option
+                        value="Czarny"
+                        {% if dane.kolor == "Czarny" %}
+                        selected
+                        {% endif %}
+                    >
                         Czarny
                     </option>
 
-                    <option value="Niebieski">
+                    <option
+                        value="Niebieski"
+                        {% if dane.kolor == "Niebieski" %}
+                        selected
+                        {% endif %}
+                    >
                         Niebieski
                     </option>
 
-                    <option value="Różowy">
+                    <option
+                        value="Różowy"
+                        {% if dane.kolor == "Różowy" %}
+                        selected
+                        {% endif %}
+                    >
                         Różowy
                     </option>
 
-                    <option value="Żółty">
+                    <option
+                        value="Żółty"
+                        {% if dane.kolor == "Żółty" %}
+                        selected
+                        {% endif %}
+                    >
                         Żółty
                     </option>
 
-                    <option value="Kolorowy">
+                    <option
+                        value="Kolorowy"
+                        {% if dane.kolor == "Kolorowy" %}
+                        selected
+                        {% endif %}
+                    >
                         Kolorowy
                     </option>
 
-                    <option value="Zestaw">
+                    <option
+                        value="Zestaw"
+                        {% if dane.kolor == "Zestaw" %}
+                        selected
+                        {% endif %}
+                    >
                         Zestaw
                     </option>
 
@@ -439,11 +606,21 @@
                         Nie wybrano
                     </option>
 
-                    <option value="Dystrybucja">
+                    <option
+                        value="Dystrybucja"
+                        {% if dane.pochodzenie == "Dystrybucja" %}
+                        selected
+                        {% endif %}
+                    >
                         Dystrybucja
                     </option>
 
-                    <option value="Rynek">
+                    <option
+                        value="Rynek"
+                        {% if dane.pochodzenie == "Rynek" %}
+                        selected
+                        {% endif %}
+                    >
                         Rynek
                     </option>
 
@@ -455,7 +632,7 @@
         </div>
 
 
-        <!-- NUMER -->
+        <!-- NUMER INDEKSOWY -->
 
         <div class="field number">
 
@@ -473,11 +650,14 @@
         </div>
 
 
-        <!-- GENEROWANIE -->
+        <!-- PRZYCISK GENEROWANIA -->
 
         <div class="button-container">
 
-            <button type="submit">
+            <button
+                type="submit"
+                class="generate-button"
+            >
                 Wygeneruj kod
             </button>
 
@@ -495,7 +675,11 @@
             Wygenerowany kod:
         </div>
 
-        <div class="code" id="kod">
+
+        <div
+            class="code"
+            id="kod"
+        >
             {{ kod }}
         </div>
 
@@ -526,11 +710,14 @@
     ============================================================
     */
 
-    const STORAGE_KEY = "generatorKodowDane";
+    const STORAGE_KEY =
+        "generatorKodowDane";
 
 
     /*
+    ============================================================
     ELEMENTY
+    ============================================================
     */
 
     const grupa =
@@ -540,7 +727,9 @@
         document.getElementById("producent");
 
     const kompatybilnosc =
-        document.getElementById("kompatybilnosc");
+        document.getElementById(
+            "kompatybilnosc"
+        );
 
     const rodzaj =
         document.getElementById("rodzaj");
@@ -549,7 +738,9 @@
         document.getElementById("kolor");
 
     const pochodzenie =
-        document.getElementById("pochodzenie");
+        document.getElementById(
+            "pochodzenie"
+        );
 
     const numer =
         document.getElementById("numer");
@@ -558,10 +749,14 @@
         document.getElementById("kod");
 
     const formularz =
-        document.getElementById("generatorForm");
+        document.getElementById(
+            "generatorForm"
+        );
 
     const copyButton =
-        document.getElementById("copyButton");
+        document.getElementById(
+            "copyButton"
+        );
 
 
     /*
@@ -574,23 +769,29 @@
 
         const dane = {
 
-            grupa: grupa.value,
+            grupa:
+                grupa.value,
 
-            producent: producent.value,
+            producent:
+                producent.value,
 
             kompatybilnosc:
                 kompatybilnosc.value,
 
-            rodzaj: rodzaj.value,
+            rodzaj:
+                rodzaj.value,
 
-            kolor: kolor.value,
+            kolor:
+                kolor.value,
 
             pochodzenie:
                 pochodzenie.value,
 
-            numer: numer.value,
+            numer:
+                numer.value,
 
-            kod: kod.innerText
+            kod:
+                kod.innerText
 
         };
 
@@ -614,12 +815,15 @@
 
     function usunNieWybrano(select) {
 
-        if (select.value !== "") {
+        if (
+            select.value !== ""
+        ) {
 
             const opcja =
                 select.querySelector(
                     'option[value=""]'
                 );
+
 
             if (opcja) {
 
@@ -647,10 +851,6 @@
     }
 
 
-    /*
-    OBSŁUGA PÓL
-    */
-
     grupa.addEventListener(
         "change",
         function() {
@@ -675,7 +875,9 @@
         "change",
         function() {
 
-            zmianaPola(kompatybilnosc);
+            zmianaPola(
+                kompatybilnosc
+            );
 
         }
     );
@@ -705,14 +907,18 @@
         "change",
         function() {
 
-            zmianaPola(pochodzenie);
+            zmianaPola(
+                pochodzenie
+            );
 
         }
     );
 
 
     /*
+    ============================================================
     NUMER
+    ============================================================
     */
 
     numer.addEventListener(
@@ -727,7 +933,7 @@
 
     /*
     ============================================================
-    WCZYTYWANIE DANYCH
+    WCZYTYWANIE DANYCH Z PRZEGLĄDARKI
     ============================================================
     */
 
@@ -752,7 +958,10 @@
                 JSON.parse(zapisane);
 
 
-            if (dane.grupa !== undefined) {
+            if (
+                dane.grupa !==
+                undefined
+            ) {
 
                 grupa.value =
                     dane.grupa;
@@ -760,7 +969,10 @@
             }
 
 
-            if (dane.producent !== undefined) {
+            if (
+                dane.producent !==
+                undefined
+            ) {
 
                 producent.value =
                     dane.producent;
@@ -769,8 +981,8 @@
 
 
             if (
-                dane.kompatybilnosc
-                !== undefined
+                dane.kompatybilnosc !==
+                undefined
             ) {
 
                 kompatybilnosc.value =
@@ -779,7 +991,10 @@
             }
 
 
-            if (dane.rodzaj !== undefined) {
+            if (
+                dane.rodzaj !==
+                undefined
+            ) {
 
                 rodzaj.value =
                     dane.rodzaj;
@@ -787,7 +1002,10 @@
             }
 
 
-            if (dane.kolor !== undefined) {
+            if (
+                dane.kolor !==
+                undefined
+            ) {
 
                 kolor.value =
                     dane.kolor;
@@ -796,8 +1014,8 @@
 
 
             if (
-                dane.pochodzenie
-                !== undefined
+                dane.pochodzenie !==
+                undefined
             ) {
 
                 pochodzenie.value =
@@ -806,30 +1024,33 @@
             }
 
 
-            if (dane.numer !== undefined) {
-
-                numer.value =
-                    dane.numer;
-
-            }
-
-
             /*
-            Usuwamy "Nie wybrano"
-            z pól, które już mają wybór.
+            UWAGA:
+
+            Numer NIE jest tutaj przywracany
+            z localStorage.
+
+            Numer pochodzi z serwera,
+            dzięki czemu wszyscy użytkownicy
+            korzystają z jednego numeru.
             */
+
 
             usunNieWybrano(grupa);
 
             usunNieWybrano(producent);
 
-            usunNieWybrano(kompatybilnosc);
+            usunNieWybrano(
+                kompatybilnosc
+            );
 
             usunNieWybrano(rodzaj);
 
             usunNieWybrano(kolor);
 
-            usunNieWybrano(pochodzenie);
+            usunNieWybrano(
+                pochodzenie
+            );
 
 
         }
@@ -859,14 +1080,10 @@
                 kod.innerText.trim();
 
 
-            /*
-            Nie kopiujemy tekstu,
-            jeśli nie ma jeszcze kodu.
-            */
-
             if (
                 !tekst ||
-                tekst === "Tu pojawi się kod"
+                tekst ===
+                "Tu pojawi się kod"
             ) {
 
                 return;
@@ -881,18 +1098,9 @@
                 );
 
 
-                /*
-                Zmieniamy napis przycisku.
-                */
-
                 copyButton.innerText =
                     "Skopiowano!";
 
-
-                /*
-                Po 1,5 sekundy
-                przywracamy poprzedni napis.
-                */
 
                 setTimeout(
                     function() {
@@ -908,19 +1116,14 @@
             }
             catch (error) {
 
-                /*
-                Awaryjne kopiowanie,
-                jeśli przeglądarka nie pozwoli
-                użyć navigator.clipboard.
-                */
-
                 const textarea =
                     document.createElement(
                         "textarea"
                     );
 
 
-                textarea.value = tekst;
+                textarea.value =
+                    tekst;
 
 
                 document.body.appendChild(
@@ -963,13 +1166,20 @@
 
     /*
     ============================================================
-    WYSŁANIE FORMULARZA
+    PRZED WYSŁANIEM
     ============================================================
     */
 
     formularz.addEventListener(
         "submit",
         function() {
+
+            /*
+            Zapisujemy wybory,
+            ale NIE zwiększamy tutaj numeru.
+
+            Numer zwiększa Python.
+            */
 
             zapiszDane();
 
