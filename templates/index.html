@@ -12,18 +12,14 @@
 
     <title>Generator kodów</title>
 
-
     <style>
 
         * {
             box-sizing: border-box;
         }
 
-
         body {
-
             margin: 0;
-
             min-height: 100vh;
 
             font-family: Arial, sans-serif;
@@ -31,19 +27,14 @@
             background: #f2f2f2;
 
             display: flex;
-
             justify-content: center;
-
             align-items: center;
 
             padding: 30px;
         }
 
-
         .container {
-
             width: 100%;
-
             max-width: 1000px;
 
             background: white;
@@ -53,25 +44,19 @@
             border-radius: 12px;
 
             box-shadow:
-                0 5px 25px
-                rgba(0, 0, 0, 0.12);
+                0 5px 25px rgba(0, 0, 0, 0.12);
         }
 
-
         h1 {
-
             text-align: center;
 
             margin-top: 0;
-
             margin-bottom: 40px;
 
             font-size: 30px;
         }
 
-
         .grid {
-
             display: grid;
 
             grid-template-columns:
@@ -80,17 +65,12 @@
             gap: 30px 40px;
         }
 
-
         .field {
-
             display: flex;
-
             flex-direction: column;
         }
 
-
         label {
-
             font-weight: bold;
 
             margin-bottom: 8px;
@@ -98,10 +78,8 @@
             font-size: 15px;
         }
 
-
         select,
         input {
-
             width: 100%;
 
             height: 42px;
@@ -110,45 +88,34 @@
 
             font-size: 15px;
 
-            border:
-                1px solid #aaa;
+            border: 1px solid #aaa;
 
             border-radius: 5px;
 
             background: white;
         }
 
-
         select:focus,
         input:focus {
-
             outline: none;
 
             border-color: #555;
         }
 
-
         .number {
-
             width: 300px;
 
-            margin:
-                35px auto 0;
+            margin: 35px auto 0;
         }
 
-
         .button-container {
-
             text-align: center;
         }
 
-
         .generate-button {
-
             margin-top: 30px;
 
-            padding:
-                13px 32px;
+            padding: 13px 32px;
 
             font-size: 16px;
 
@@ -165,31 +132,23 @@
             cursor: pointer;
         }
 
-
         .generate-button:hover {
-
             background: #555;
         }
 
-
         .result {
-
             margin-top: 35px;
 
             text-align: center;
         }
 
-
         .result-title {
-
             font-size: 16px;
 
             margin-bottom: 10px;
         }
 
-
         .code {
-
             padding: 15px;
 
             font-size: 28px;
@@ -198,8 +157,7 @@
 
             background: #fafafa;
 
-            border:
-                2px solid #ddd;
+            border: 2px solid #ddd;
 
             border-radius: 6px;
 
@@ -214,13 +172,10 @@
             align-items: center;
         }
 
-
         .copy-button {
-
             margin-top: 15px;
 
-            padding:
-                11px 25px;
+            padding: 11px 25px;
 
             font-size: 15px;
 
@@ -237,56 +192,38 @@
             cursor: pointer;
         }
 
-
         .copy-button:hover {
-
             background: #333;
         }
 
 
-        /*
-        ============================================
-        TELEFON
-        ============================================
-        */
+        /* TELEFON */
 
         @media (max-width: 750px) {
 
             body {
-
                 padding: 15px;
 
-                align-items:
-                    flex-start;
+                align-items: flex-start;
             }
 
-
             .container {
-
-                padding:
-                    30px 20px;
+                padding: 30px 20px;
 
                 margin-top: 15px;
             }
 
-
             .grid {
-
-                grid-template-columns:
-                    1fr;
+                grid-template-columns: 1fr;
 
                 gap: 20px;
             }
 
-
             .number {
-
                 width: 100%;
             }
 
-
             h1 {
-
                 font-size: 25px;
             }
 
@@ -650,7 +587,7 @@
         </div>
 
 
-        <!-- PRZYCISK GENEROWANIA -->
+        <!-- GENEROWANIE -->
 
         <div class="button-container">
 
@@ -675,16 +612,12 @@
             Wygenerowany kod:
         </div>
 
-
         <div
             class="code"
             id="kod"
         >
             {{ kod }}
         </div>
-
-
-        <!-- KOPIOWANIE -->
 
         <button
             type="button"
@@ -700,25 +633,20 @@
 </div>
 
 
-
 <script>
 
 
-    /*
-    ============================================================
-    LOCAL STORAGE
-    ============================================================
-    */
+    /* =========================================================
+       LOCAL STORAGE
+       ========================================================= */
 
     const STORAGE_KEY =
         "generatorKodowDane";
 
 
-    /*
-    ============================================================
-    ELEMENTY
-    ============================================================
-    */
+    /* =========================================================
+       ELEMENTY
+       ========================================================= */
 
     const grupa =
         document.getElementById("grupa");
@@ -727,9 +655,7 @@
         document.getElementById("producent");
 
     const kompatybilnosc =
-        document.getElementById(
-            "kompatybilnosc"
-        );
+        document.getElementById("kompatybilnosc");
 
     const rodzaj =
         document.getElementById("rodzaj");
@@ -738,9 +664,7 @@
         document.getElementById("kolor");
 
     const pochodzenie =
-        document.getElementById(
-            "pochodzenie"
-        );
+        document.getElementById("pochodzenie");
 
     const numer =
         document.getElementById("numer");
@@ -749,21 +673,15 @@
         document.getElementById("kod");
 
     const formularz =
-        document.getElementById(
-            "generatorForm"
-        );
+        document.getElementById("generatorForm");
 
     const copyButton =
-        document.getElementById(
-            "copyButton"
-        );
+        document.getElementById("copyButton");
 
 
-    /*
-    ============================================================
-    ZAPIS DANYCH
-    ============================================================
-    */
+    /* =========================================================
+       ZAPIS DANYCH
+       ========================================================= */
 
     function zapiszDane() {
 
@@ -797,33 +715,25 @@
 
 
         localStorage.setItem(
-
             STORAGE_KEY,
-
             JSON.stringify(dane)
-
         );
 
     }
 
 
-    /*
-    ============================================================
-    USUWANIE "NIE WYBRANO"
-    ============================================================
-    */
+    /* =========================================================
+       USUWANIE "NIE WYBRANO"
+       ========================================================= */
 
     function usunNieWybrano(select) {
 
-        if (
-            select.value !== ""
-        ) {
+        if (select.value !== "") {
 
             const opcja =
                 select.querySelector(
                     'option[value=""]'
                 );
-
 
             if (opcja) {
 
@@ -836,11 +746,9 @@
     }
 
 
-    /*
-    ============================================================
-    ZMIANA POLA
-    ============================================================
-    */
+    /* =========================================================
+       ZMIANA POLA
+       ========================================================= */
 
     function zmianaPola(select) {
 
@@ -875,9 +783,7 @@
         "change",
         function() {
 
-            zmianaPola(
-                kompatybilnosc
-            );
+            zmianaPola(kompatybilnosc);
 
         }
     );
@@ -907,19 +813,15 @@
         "change",
         function() {
 
-            zmianaPola(
-                pochodzenie
-            );
+            zmianaPola(pochodzenie);
 
         }
     );
 
 
-    /*
-    ============================================================
-    NUMER
-    ============================================================
-    */
+    /* =========================================================
+       NUMER
+       ========================================================= */
 
     numer.addEventListener(
         "input",
@@ -931,11 +833,9 @@
     );
 
 
-    /*
-    ============================================================
-    WCZYTYWANIE DANYCH Z PRZEGLĄDARKI
-    ============================================================
-    */
+    /* =========================================================
+       WCZYTYWANIE DANYCH
+       ========================================================= */
 
     function wczytajDane() {
 
@@ -958,10 +858,7 @@
                 JSON.parse(zapisane);
 
 
-            if (
-                dane.grupa !==
-                undefined
-            ) {
+            if (dane.grupa !== undefined) {
 
                 grupa.value =
                     dane.grupa;
@@ -969,10 +866,7 @@
             }
 
 
-            if (
-                dane.producent !==
-                undefined
-            ) {
+            if (dane.producent !== undefined) {
 
                 producent.value =
                     dane.producent;
@@ -991,10 +885,7 @@
             }
 
 
-            if (
-                dane.rodzaj !==
-                undefined
-            ) {
+            if (dane.rodzaj !== undefined) {
 
                 rodzaj.value =
                     dane.rodzaj;
@@ -1002,10 +893,7 @@
             }
 
 
-            if (
-                dane.kolor !==
-                undefined
-            ) {
+            if (dane.kolor !== undefined) {
 
                 kolor.value =
                     dane.kolor;
@@ -1025,16 +913,39 @@
 
 
             /*
-            UWAGA:
+             * NUMER JEST TERAZ RÓWNIEŻ
+             * ODCZYTYWANY Z LOCAL STORAGE.
+             */
 
-            Numer NIE jest tutaj przywracany
-            z localStorage.
+            if (dane.numer !== undefined) {
 
-            Numer pochodzi z serwera,
-            dzięki czemu wszyscy użytkownicy
-            korzystają z jednego numeru.
-            */
+                numer.value =
+                    dane.numer;
 
+            }
+
+
+            /*
+             * Przywracamy zapisany kod,
+             * jeżeli istnieje.
+             */
+
+            if (
+                dane.kod !== undefined &&
+                dane.kod !== ""
+            ) {
+
+                kod.innerText =
+                    dane.kod;
+
+            }
+
+
+            /*
+             * Usuwamy "Nie wybrano"
+             * tam, gdzie użytkownik
+             * wcześniej coś wybrał.
+             */
 
             usunNieWybrano(grupa);
 
@@ -1066,11 +977,9 @@
     }
 
 
-    /*
-    ============================================================
-    KOPIOWANIE KODU
-    ============================================================
-    */
+    /* =========================================================
+       KOPIOWANIE KODU
+       ========================================================= */
 
     copyButton.addEventListener(
         "click",
@@ -1115,6 +1024,10 @@
 
             }
             catch (error) {
+
+                /*
+                 * Awaryjne kopiowanie
+                 */
 
                 const textarea =
                     document.createElement(
@@ -1164,22 +1077,23 @@
     );
 
 
-    /*
-    ============================================================
-    PRZED WYSŁANIEM
-    ============================================================
-    */
+    /* =========================================================
+       WYSŁANIE FORMULARZA
+       ========================================================= */
 
     formularz.addEventListener(
         "submit",
         function() {
 
             /*
-            Zapisujemy wybory,
-            ale NIE zwiększamy tutaj numeru.
-
-            Numer zwiększa Python.
-            */
+             * NIE zwiększamy tutaj numeru.
+             *
+             * Python generuje kod i zwiększa
+             * numer po stronie serwera.
+             *
+             * JavaScript tylko zapisuje
+             * aktualny numer.
+             */
 
             zapiszDane();
 
@@ -1187,11 +1101,9 @@
     );
 
 
-    /*
-    ============================================================
-    START
-    ============================================================
-    */
+    /* =========================================================
+       START
+       ========================================================= */
 
     wczytajDane();
 
