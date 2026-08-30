@@ -5,13 +5,9 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Generator kodów</title>
-
 
     <style>
 
@@ -19,11 +15,8 @@
             box-sizing: border-box;
         }
 
-
         body {
-
             margin: 0;
-
             min-height: 100vh;
 
             font-family: Arial, sans-serif;
@@ -31,20 +24,14 @@
             background: #f2f2f2;
 
             display: flex;
-
             justify-content: center;
-
             align-items: center;
 
             padding: 30px;
-
         }
 
-
         .container {
-
             width: 100%;
-
             max-width: 1000px;
 
             background: white;
@@ -54,60 +41,40 @@
             border-radius: 12px;
 
             box-shadow:
-                0 5px 25px
-                rgba(0, 0, 0, 0.12);
-
+                0 5px 25px rgba(0, 0, 0, 0.12);
         }
-
 
         h1 {
-
             text-align: center;
 
-            margin-top: 0;
-
-            margin-bottom: 40px;
+            margin: 0 0 40px 0;
 
             font-size: 30px;
-
         }
-
 
         .grid {
-
             display: grid;
 
-            grid-template-columns:
-                repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr);
 
             gap: 30px 40px;
-
         }
-
 
         .field {
-
             display: flex;
-
             flex-direction: column;
-
         }
 
-
         label {
-
             font-weight: bold;
 
             margin-bottom: 8px;
 
             font-size: 15px;
-
         }
-
 
         select,
         input {
-
             width: 100%;
 
             height: 42px;
@@ -121,38 +88,26 @@
             border-radius: 5px;
 
             background: white;
-
         }
-
 
         select:focus,
         input:focus {
-
             outline: none;
 
             border-color: #555;
-
         }
 
-
         .number {
-
             width: 300px;
 
             margin: 35px auto 0;
-
         }
-
 
         .button-container {
-
             text-align: center;
-
         }
 
-
         .generate-button {
-
             margin-top: 30px;
 
             padding: 13px 32px;
@@ -170,37 +125,25 @@
             color: white;
 
             cursor: pointer;
-
         }
-
 
         .generate-button:hover {
-
             background: #555;
-
         }
 
-
         .result {
-
             margin-top: 35px;
 
             text-align: center;
-
         }
 
-
         .result-title {
-
             font-size: 16px;
 
             margin-bottom: 10px;
-
         }
 
-
         .code {
-
             padding: 15px;
 
             font-size: 28px;
@@ -222,12 +165,9 @@
             justify-content: center;
 
             align-items: center;
-
         }
 
-
         .copy-button {
-
             margin-top: 15px;
 
             padding: 11px 25px;
@@ -245,59 +185,39 @@
             color: white;
 
             cursor: pointer;
-
         }
-
 
         .copy-button:hover {
-
             background: #333;
-
         }
-
 
         @media (max-width: 750px) {
 
             body {
-
                 padding: 15px;
 
                 align-items: flex-start;
-
             }
 
-
             .container {
-
                 padding: 30px 20px;
 
                 margin-top: 15px;
-
             }
 
-
             .grid {
-
                 grid-template-columns: 1fr;
 
                 gap: 20px;
-
             }
-
 
             .number {
-
                 width: 100%;
-
             }
-
 
             h1 {
-
                 font-size: 25px;
-
             }
-
         }
 
     </style>
@@ -311,390 +231,243 @@
 <div class="container">
 
 
-    <h1>
-        Generator kodów
-    </h1>
+    <h1>Generator kodów</h1>
 
 
-    <form
-        method="POST"
-        id="generatorForm"
-    >
+    <div class="grid">
 
 
-        <div class="grid">
+        <!-- GRUPA -->
 
+        <div class="field">
 
-            <!-- ==============================
-                 GRUPA
-            =============================== -->
-
-            <div class="field">
-
-                <label for="grupa">
-                    Grupa
-                </label>
-
-                <select
-                    name="grupa"
-                    id="grupa"
-                >
-
-                    <option value="">
-                        Nie wybrano
-                    </option>
-
-                    <option
-                        value="Materiały eksploatacyjne"
-                        {% if dane.grupa == "Materiały eksploatacyjne" %}
-                        selected
-                        {% endif %}
-                    >
-                        Materiały eksploatacyjne
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <!-- ==============================
-                 PRODUCENT
-            =============================== -->
-
-            <div class="field">
-
-                <label for="producent">
-                    Producent
-                </label>
-
-                <select
-                    name="producent"
-                    id="producent"
-                >
-
-                    <option value="">
-                        Nie wybrano
-                    </option>
-
-                    <option
-                        value="Hewlett Packard"
-                        {% if dane.producent == "Hewlett Packard" %}
-                        selected
-                        {% endif %}
-                    >
-                        Hewlett Packard
-                    </option>
-
-                    <option
-                        value="Brother"
-                        {% if dane.producent == "Brother" %}
-                        selected
-                        {% endif %}
-                    >
-                        Brother
-                    </option>
-
-                    <option
-                        value="Canon"
-                        {% if dane.producent == "Canon" %}
-                        selected
-                        {% endif %}
-                    >
-                        Canon
-                    </option>
-
-                    <option
-                        value="Epson"
-                        {% if dane.producent == "Epson" %}
-                        selected
-                        {% endif %}
-                    >
-                        Epson
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <!-- ==============================
-                 KOMPATYBILNOŚĆ
-            =============================== -->
-
-            <div class="field">
-
-                <label for="kompatybilnosc">
-                    Kompatybilność
-                </label>
-
-                <select
-                    name="kompatybilnosc"
-                    id="kompatybilnosc"
-                >
-
-                    <option value="">
-                        Nie wybrano
-                    </option>
-
-                    <option
-                        value="Hewlett Packard"
-                        {% if dane.kompatybilnosc == "Hewlett Packard" %}
-                        selected
-                        {% endif %}
-                    >
-                        Hewlett Packard
-                    </option>
-
-                    <option
-                        value="Brother"
-                        {% if dane.kompatybilnosc == "Brother" %}
-                        selected
-                        {% endif %}
-                    >
-                        Brother
-                    </option>
-
-                    <option
-                        value="Canon"
-                        {% if dane.kompatybilnosc == "Canon" %}
-                        selected
-                        {% endif %}
-                    >
-                        Canon
-                    </option>
-
-                    <option
-                        value="Epson"
-                        {% if dane.kompatybilnosc == "Epson" %}
-                        selected
-                        {% endif %}
-                    >
-                        Epson
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <!-- ==============================
-                 RODZAJ
-            =============================== -->
-
-            <div class="field">
-
-                <label for="rodzaj">
-                    Rodzaj
-                </label>
-
-                <select
-                    name="rodzaj"
-                    id="rodzaj"
-                >
-
-                    <option value="">
-                        Nie wybrano
-                    </option>
-
-                    <option
-                        value="Tusz"
-                        {% if dane.rodzaj == "Tusz" %}
-                        selected
-                        {% endif %}
-                    >
-                        Tusz
-                    </option>
-
-                    <option
-                        value="Toner"
-                        {% if dane.rodzaj == "Toner" %}
-                        selected
-                        {% endif %}
-                    >
-                        Toner
-                    </option>
-
-                    <option
-                        value="Bębeb"
-                        {% if dane.rodzaj == "Bębeb" %}
-                        selected
-                        {% endif %}
-                    >
-                        Bębeb
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <!-- ==============================
-                 KOLOR
-            =============================== -->
-
-            <div class="field">
-
-                <label for="kolor">
-                    Kolor
-                </label>
-
-                <select
-                    name="kolor"
-                    id="kolor"
-                >
-
-                    <option value="">
-                        Nie wybrano
-                    </option>
-
-                    <option
-                        value="Czarny"
-                        {% if dane.kolor == "Czarny" %}
-                        selected
-                        {% endif %}
-                    >
-                        Czarny
-                    </option>
-
-                    <option
-                        value="Niebieski"
-                        {% if dane.kolor == "Niebieski" %}
-                        selected
-                        {% endif %}
-                    >
-                        Niebieski
-                    </option>
-
-                    <option
-                        value="Różowy"
-                        {% if dane.kolor == "Różowy" %}
-                        selected
-                        {% endif %}
-                    >
-                        Różowy
-                    </option>
-
-                    <option
-                        value="Żółty"
-                        {% if dane.kolor == "Żółty" %}
-                        selected
-                        {% endif %}
-                    >
-                        Żółty
-                    </option>
-
-                    <option
-                        value="Kolorowy"
-                        {% if dane.kolor == "Kolorowy" %}
-                        selected
-                        {% endif %}
-                    >
-                        Kolorowy
-                    </option>
-
-                    <option
-                        value="Zestaw"
-                        {% if dane.kolor == "Zestaw" %}
-                        selected
-                        {% endif %}
-                    >
-                        Zestaw
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <!-- ==============================
-                 POCHODZENIE
-            =============================== -->
-
-            <div class="field">
-
-                <label for="pochodzenie">
-                    Pochodzenie
-                </label>
-
-                <select
-                    name="pochodzenie"
-                    id="pochodzenie"
-                >
-
-                    <option value="">
-                        Nie wybrano
-                    </option>
-
-                    <option
-                        value="Dystrybucja"
-                        {% if dane.pochodzenie == "Dystrybucja" %}
-                        selected
-                        {% endif %}
-                    >
-                        Dystrybucja
-                    </option>
-
-                    <option
-                        value="Rynek"
-                        {% if dane.pochodzenie == "Rynek" %}
-                        selected
-                        {% endif %}
-                    >
-                        Rynek
-                    </option>
-
-                </select>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- ==============================
-             NUMER
-        =============================== -->
-
-        <div class="field number">
-
-            <label for="numer">
-                Numer indeksowy
+            <label for="grupa">
+                Grupa
             </label>
 
-            <input
-                type="number"
-                name="numer"
-                id="numer"
-                value="{{ dane.numer }}"
-                min="1"
-            >
+            <select id="grupa">
+
+                <option value="">
+                    Nie wybrano
+                </option>
+
+                <option value="Materiały eksploatacyjne">
+                    Materiały eksploatacyjne
+                </option>
+
+            </select>
 
         </div>
 
 
-        <!-- ==============================
-             PRZYCISK
-        =============================== -->
+        <!-- PRODUCENT -->
 
-        <div class="button-container">
+        <div class="field">
 
-            <button
-                type="submit"
-                class="generate-button"
-            >
-                Wygeneruj kod
-            </button>
+            <label for="producent">
+                Producent
+            </label>
+
+            <select id="producent">
+
+                <option value="">
+                    Nie wybrano
+                </option>
+
+                <option value="Hewlett Packard">
+                    Hewlett Packard
+                </option>
+
+                <option value="Brother">
+                    Brother
+                </option>
+
+                <option value="Canon">
+                    Canon
+                </option>
+
+                <option value="Epson">
+                    Epson
+                </option>
+
+            </select>
 
         </div>
 
 
-    </form>
+        <!-- KOMPATYBILNOŚĆ -->
+
+        <div class="field">
+
+            <label for="kompatybilnosc">
+                Kompatybilność
+            </label>
+
+            <select id="kompatybilnosc">
+
+                <option value="">
+                    Nie wybrano
+                </option>
+
+                <option value="Hewlett Packard">
+                    Hewlett Packard
+                </option>
+
+                <option value="Brother">
+                    Brother
+                </option>
+
+                <option value="Canon">
+                    Canon
+                </option>
+
+                <option value="Epson">
+                    Epson
+                </option>
+
+            </select>
+
+        </div>
 
 
-    <!-- ==============================
-         WYNIK
-    =============================== -->
+        <!-- RODZAJ -->
+
+        <div class="field">
+
+            <label for="rodzaj">
+                Rodzaj
+            </label>
+
+            <select id="rodzaj">
+
+                <option value="">
+                    Nie wybrano
+                </option>
+
+                <option value="Tusz">
+                    Tusz
+                </option>
+
+                <option value="Toner">
+                    Toner
+                </option>
+
+                <option value="Bębeb">
+                    Bębeb
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- KOLOR -->
+
+        <div class="field">
+
+            <label for="kolor">
+                Kolor
+            </label>
+
+            <select id="kolor">
+
+                <option value="">
+                    Nie wybrano
+                </option>
+
+                <option value="Czarny">
+                    Czarny
+                </option>
+
+                <option value="Niebieski">
+                    Niebieski
+                </option>
+
+                <option value="Różowy">
+                    Różowy
+                </option>
+
+                <option value="Żółty">
+                    Żółty
+                </option>
+
+                <option value="Kolorowy">
+                    Kolorowy
+                </option>
+
+                <option value="Zestaw">
+                    Zestaw
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- POCHODZENIE -->
+
+        <div class="field">
+
+            <label for="pochodzenie">
+                Pochodzenie
+            </label>
+
+            <select id="pochodzenie">
+
+                <option value="">
+                    Nie wybrano
+                </option>
+
+                <option value="Dystrybucja">
+                    Dystrybucja
+                </option>
+
+                <option value="Rynek">
+                    Rynek
+                </option>
+
+            </select>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- NUMER -->
+
+    <div class="field number">
+
+        <label for="numer">
+            Numer indeksowy
+        </label>
+
+        <input
+            type="number"
+            id="numer"
+            min="1"
+            value="1"
+        >
+
+    </div>
+
+
+    <!-- PRZYCISK -->
+
+    <div class="button-container">
+
+        <button
+            class="generate-button"
+            id="generateButton"
+            type="button"
+        >
+            Wygeneruj kod
+        </button>
+
+    </div>
+
+
+    <!-- WYNIK -->
 
     <div class="result">
 
@@ -702,19 +475,17 @@
             Wygenerowany kod:
         </div>
 
-
         <div
             class="code"
             id="kod"
         >
-            {{ kod }}
+            Tu pojawi się kod
         </div>
 
-
         <button
-            type="button"
             class="copy-button"
             id="copyButton"
+            type="button"
         >
             Kopiuj kod
         </button>
@@ -728,17 +499,9 @@
 <script>
 
 
-    /* ==========================================================
-       LOCAL STORAGE
-    ========================================================== */
-
-    const STORAGE_KEY =
-        "generatorKodowDane";
-
-
-    /* ==========================================================
+    /* =====================================================
        ELEMENTY
-    ========================================================== */
+    ===================================================== */
 
     const grupa =
         document.getElementById("grupa");
@@ -764,16 +527,24 @@
     const kod =
         document.getElementById("kod");
 
-    const formularz =
-        document.getElementById("generatorForm");
+    const generateButton =
+        document.getElementById("generateButton");
 
     const copyButton =
         document.getElementById("copyButton");
 
 
-    /* ==========================================================
+    /* =====================================================
+       KLUCZ LOCAL STORAGE
+    ===================================================== */
+
+    const STORAGE_KEY =
+        "generator_kodow_dane";
+
+
+    /* =====================================================
        ZAPISYWANIE
-    ========================================================== */
+    ===================================================== */
 
     function zapiszDane() {
 
@@ -795,140 +566,22 @@
 
             numer: numer.value,
 
-            kod: kod.innerText
+            kod: kod.textContent
 
         };
 
 
         localStorage.setItem(
-
             STORAGE_KEY,
-
             JSON.stringify(dane)
-
         );
 
     }
 
 
-    /* ==========================================================
-       USUWANIE "NIE WYBRANO"
-    ========================================================== */
-
-    function usunNieWybrano(select) {
-
-        if (select.value !== "") {
-
-            const opcja =
-                select.querySelector(
-                    'option[value=""]'
-                );
-
-            if (opcja) {
-
-                opcja.remove();
-
-            }
-
-        }
-
-    }
-
-
-    /* ==========================================================
-       ZMIANA SELECTA
-    ========================================================== */
-
-    function zmianaSelecta(select) {
-
-        usunNieWybrano(select);
-
-        zapiszDane();
-
-    }
-
-
-    grupa.addEventListener(
-        "change",
-        function() {
-
-            zmianaSelecta(grupa);
-
-        }
-    );
-
-
-    producent.addEventListener(
-        "change",
-        function() {
-
-            zmianaSelecta(producent);
-
-        }
-    );
-
-
-    kompatybilnosc.addEventListener(
-        "change",
-        function() {
-
-            zmianaSelecta(
-                kompatybilnosc
-            );
-
-        }
-    );
-
-
-    rodzaj.addEventListener(
-        "change",
-        function() {
-
-            zmianaSelecta(rodzaj);
-
-        }
-    );
-
-
-    kolor.addEventListener(
-        "change",
-        function() {
-
-            zmianaSelecta(kolor);
-
-        }
-    );
-
-
-    pochodzenie.addEventListener(
-        "change",
-        function() {
-
-            zmianaSelecta(
-                pochodzenie
-            );
-
-        }
-    );
-
-
-    /* ==========================================================
-       ZMIANA NUMERU
-    ========================================================== */
-
-    numer.addEventListener(
-        "input",
-        function() {
-
-            zapiszDane();
-
-        }
-    );
-
-
-    /* ==========================================================
-       WCZYTYWANIE ZAPISANYCH DANYCH
-    ========================================================== */
+    /* =====================================================
+       WCZYTYWANIE
+    ===================================================== */
 
     function wczytajDane() {
 
@@ -951,71 +604,37 @@
                 JSON.parse(zapisane);
 
 
-            if (
-                dane.grupa !== undefined
-            ) {
-
-                grupa.value =
-                    dane.grupa;
-
+            if (dane.grupa !== undefined) {
+                grupa.value = dane.grupa;
             }
 
 
-            if (
-                dane.producent !== undefined
-            ) {
-
-                producent.value =
-                    dane.producent;
-
+            if (dane.producent !== undefined) {
+                producent.value = dane.producent;
             }
 
 
-            if (
-                dane.kompatybilnosc !==
-                undefined
-            ) {
-
+            if (dane.kompatybilnosc !== undefined) {
                 kompatybilnosc.value =
                     dane.kompatybilnosc;
-
             }
 
 
-            if (
-                dane.rodzaj !== undefined
-            ) {
-
-                rodzaj.value =
-                    dane.rodzaj;
-
+            if (dane.rodzaj !== undefined) {
+                rodzaj.value = dane.rodzaj;
             }
 
 
-            if (
-                dane.kolor !== undefined
-            ) {
-
-                kolor.value =
-                    dane.kolor;
-
+            if (dane.kolor !== undefined) {
+                kolor.value = dane.kolor;
             }
 
 
-            if (
-                dane.pochodzenie !==
-                undefined
-            ) {
-
+            if (dane.pochodzenie !== undefined) {
                 pochodzenie.value =
                     dane.pochodzenie;
-
             }
 
-
-            /* ==========================
-               NUMER
-            ========================== */
 
             if (
                 dane.numer !== undefined &&
@@ -1028,47 +647,29 @@
             }
 
 
-            /* ==========================
-               KOD
-            ========================== */
-
             if (
                 dane.kod !== undefined &&
                 dane.kod !== ""
             ) {
 
-                kod.innerText =
+                kod.textContent =
                     dane.kod;
 
             }
 
 
-            /* ==========================
-               USUWANIE "NIE WYBRANO"
-            ========================== */
-
             usunNieWybrano(grupa);
-
             usunNieWybrano(producent);
-
-            usunNieWybrano(
-                kompatybilnosc
-            );
-
+            usunNieWybrano(kompatybilnosc);
             usunNieWybrano(rodzaj);
-
             usunNieWybrano(kolor);
-
-            usunNieWybrano(
-                pochodzenie
-            );
+            usunNieWybrano(pochodzenie);
 
 
-        }
-        catch (error) {
+        } catch (error) {
 
-            console.log(
-                "Nie udało się wczytać danych.",
+            console.error(
+                "Błąd odczytu danych:",
                 error
             );
 
@@ -1077,22 +678,403 @@
     }
 
 
-    /* ==========================================================
+    /* =====================================================
+       USUWANIE "NIE WYBRANO"
+    ===================================================== */
+
+    function usunNieWybrano(select) {
+
+        if (select.value !== "") {
+
+            const opcja =
+                select.querySelector(
+                    'option[value=""]'
+                );
+
+
+            if (opcja) {
+
+                opcja.remove();
+
+            }
+
+        }
+
+    }
+
+
+    /* =====================================================
+       GENEROWANIE KODU
+    ===================================================== */
+
+    function generujKod() {
+
+        let kodzik = "";
+
+
+        /* GRUPA */
+
+        if (
+            grupa.value ===
+            "Materiały eksploatacyjne"
+        ) {
+
+            kodzik += "ME";
+
+        }
+
+
+        /* PRODUCENT */
+
+        if (
+            producent.value ===
+            "Hewlett Packard"
+        ) {
+
+            kodzik += "HP";
+
+        }
+
+        else if (
+            producent.value ===
+            "Brother"
+        ) {
+
+            kodzik += "BR";
+
+        }
+
+        else if (
+            producent.value ===
+            "Canon"
+        ) {
+
+            kodzik += "CA";
+
+        }
+
+        else if (
+            producent.value ===
+            "Epson"
+        ) {
+
+            kodzik += "EP";
+
+        }
+
+
+        /* KOMPATYBILNOŚĆ */
+
+        if (
+            kompatybilnosc.value ===
+            "Hewlett Packard"
+        ) {
+
+            kodzik += "HP";
+
+        }
+
+        else if (
+            kompatybilnosc.value ===
+            "Brother"
+        ) {
+
+            kodzik += "BR";
+
+        }
+
+        else if (
+            kompatybilnosc.value ===
+            "Canon"
+        ) {
+
+            kodzik += "CA";
+
+        }
+
+        else if (
+            kompatybilnosc.value ===
+            "Epson"
+        ) {
+
+            kodzik += "EP";
+
+        }
+
+
+        /* RODZAJ */
+
+        if (
+            rodzaj.value ===
+            "Tusz"
+        ) {
+
+            kodzik += "INK";
+
+        }
+
+        else if (
+            rodzaj.value ===
+            "Toner"
+        ) {
+
+            kodzik += "TON";
+
+        }
+
+        else if (
+            rodzaj.value ===
+            "Bębeb"
+        ) {
+
+            kodzik += "BB";
+
+        }
+
+
+        /* KOLOR */
+
+        if (
+            kolor.value ===
+            "Czarny"
+        ) {
+
+            kodzik += "BK";
+
+        }
+
+        else if (
+            kolor.value ===
+            "Niebieski"
+        ) {
+
+            kodzik += "C";
+
+        }
+
+        else if (
+            kolor.value ===
+            "Różowy"
+        ) {
+
+            kodzik += "M";
+
+        }
+
+        else if (
+            kolor.value ===
+            "Żółty"
+        ) {
+
+            kodzik += "Y";
+
+        }
+
+        else if (
+            kolor.value ===
+            "Kolorowy"
+        ) {
+
+            kodzik += "CMY";
+
+        }
+
+        else if (
+            kolor.value ===
+            "Zestaw"
+        ) {
+
+            kodzik += "CMYK";
+
+        }
+
+
+        /* POCHODZENIE */
+
+        if (
+            pochodzenie.value ===
+            "Dystrybucja"
+        ) {
+
+            kodzik += "D";
+
+        }
+
+        else if (
+            pochodzenie.value ===
+            "Rynek"
+        ) {
+
+            kodzik += "R";
+
+        }
+
+
+        /* NUMER */
+
+        const numerTekst =
+            numer.value.trim();
+
+
+        if (
+            numerTekst === "" ||
+            !/^\d+$/.test(numerTekst) ||
+            parseInt(numerTekst) < 1
+        ) {
+
+            kod.textContent =
+                "Wpisz poprawny numer!";
+
+            zapiszDane();
+
+            return;
+
+        }
+
+
+        const obecnyNumer =
+            parseInt(numerTekst);
+
+
+        /* Dodajemy numer do kodu */
+
+        kodzik +=
+            String(obecnyNumer);
+
+
+        /* Pokazujemy kod */
+
+        kod.textContent =
+            kodzik;
+
+
+        /* Zwiększamy numer */
+
+        numer.value =
+            String(obecnyNumer + 1);
+
+
+        /* Zapamiętujemy WSZYSTKO */
+
+        zapiszDane();
+
+    }
+
+
+    /* =====================================================
+       PRZYCISK GENEROWANIA
+    ===================================================== */
+
+    generateButton.addEventListener(
+        "click",
+        generujKod
+    );
+
+
+    /* =====================================================
+       ZAPISYWANIE ZMIAN
+    ===================================================== */
+
+    grupa.addEventListener(
+        "change",
+        function() {
+
+            usunNieWybrano(grupa);
+
+            zapiszDane();
+
+        }
+    );
+
+
+    producent.addEventListener(
+        "change",
+        function() {
+
+            usunNieWybrano(producent);
+
+            zapiszDane();
+
+        }
+    );
+
+
+    kompatybilnosc.addEventListener(
+        "change",
+        function() {
+
+            usunNieWybrano(kompatybilnosc);
+
+            zapiszDane();
+
+        }
+    );
+
+
+    rodzaj.addEventListener(
+        "change",
+        function() {
+
+            usunNieWybrano(rodzaj);
+
+            zapiszDane();
+
+        }
+    );
+
+
+    kolor.addEventListener(
+        "change",
+        function() {
+
+            usunNieWybrano(kolor);
+
+            zapiszDane();
+
+        }
+    );
+
+
+    pochodzenie.addEventListener(
+        "change",
+        function() {
+
+            usunNieWybrano(pochodzenie);
+
+            zapiszDane();
+
+        }
+    );
+
+
+    numer.addEventListener(
+        "input",
+        function() {
+
+            zapiszDane();
+
+        }
+    );
+
+
+    /* =====================================================
        KOPIOWANIE
-    ========================================================== */
+    ===================================================== */
 
     copyButton.addEventListener(
         "click",
         async function() {
 
             const tekst =
-                kod.innerText.trim();
+                kod.textContent.trim();
 
 
             if (
-                !tekst ||
+                tekst === "" ||
                 tekst ===
-                "Tu pojawi się kod"
+                "Tu pojawi się kod" ||
+                tekst ===
+                "Wpisz poprawny numer!"
             ) {
 
                 return;
@@ -1107,14 +1089,14 @@
                 );
 
 
-                copyButton.innerText =
+                copyButton.textContent =
                     "Skopiowano!";
 
 
                 setTimeout(
                     function() {
 
-                        copyButton.innerText =
+                        copyButton.textContent =
                             "Kopiuj kod";
 
                     },
@@ -1122,8 +1104,7 @@
                 );
 
 
-            }
-            catch (error) {
+            } catch (error) {
 
                 const textarea =
                     document.createElement(
@@ -1153,14 +1134,14 @@
                 );
 
 
-                copyButton.innerText =
+                copyButton.textContent =
                     "Skopiowano!";
 
 
                 setTimeout(
                     function() {
 
-                        copyButton.innerText =
+                        copyButton.textContent =
                             "Kopiuj kod";
 
                     },
@@ -1173,39 +1154,9 @@
     );
 
 
-    /* ==========================================================
-       GENEROWANIE
-    ========================================================== */
-
-    formularz.addEventListener(
-        "submit",
-        function() {
-
-            /*
-             * WAŻNE:
-             *
-             * Nie zwiększamy tutaj numeru.
-             *
-             * Python:
-             * 1. bierze aktualny numer,
-             * 2. dodaje go do kodu,
-             * 3. zwiększa numer o 1,
-             * 4. wysyła nowy numer z powrotem
-             *    do strony.
-             *
-             * Dzięki temu nie ma podwójnego
-             * zwiększania numeru.
-             */
-
-            zapiszDane();
-
-        }
-    );
-
-
-    /* ==========================================================
+    /* =====================================================
        START
-    ========================================================== */
+    ===================================================== */
 
     wczytajDane();
 
